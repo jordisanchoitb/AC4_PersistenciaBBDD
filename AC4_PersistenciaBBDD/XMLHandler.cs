@@ -1,4 +1,5 @@
 using System.Xml;
+using AC4_PersistenciaBBDD.DTOs;
 
 namespace AC4_PersistenciaBBDD
 {
@@ -27,7 +28,7 @@ namespace AC4_PersistenciaBBDD
             }
         }
 
-        public void ConvertToXml(List<Comarca> comarcas)
+        public void ConvertToXml(List<ComarcaDTO> comarcas)
         {
             var xmlDocument = new XmlDocument();
             var rootNode = xmlDocument.CreateElement("Comarques");

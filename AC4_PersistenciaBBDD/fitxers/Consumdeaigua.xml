@@ -4609,4 +4609,74 @@
     <Total>45</Total>
     <ConsumDomesticPerCapita>45</ConsumDomesticPerCapita>
   </Comarca>
+  <Comarca>
+    <Any>2050</Any>
+    <Codi>24</Codi>
+    <Nom>OSONA</Nom>
+    <Poblacio>5</Poblacio>
+    <DomesticXarxa>5</DomesticXarxa>
+    <ActivitatsEconomiques>5</ActivitatsEconomiques>
+    <Total>5</Total>
+    <ConsumDomesticPerCapita>5</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2027</Any>
+    <Codi>13</Codi>
+    <Nom>BARCELONÈS, EL</Nom>
+    <Poblacio>56</Poblacio>
+    <DomesticXarxa>56</DomesticXarxa>
+    <ActivitatsEconomiques>56</ActivitatsEconomiques>
+    <Total>56</Total>
+    <ConsumDomesticPerCapita>56</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2022</Any>
+    <Codi>29</Codi>
+    <Nom>PRIORAT, EL</Nom>
+    <Poblacio>45621</Poblacio>
+    <DomesticXarxa>456</DomesticXarxa>
+    <ActivitatsEconomiques>654</ActivitatsEconomiques>
+    <Total>654</Total>
+    <ConsumDomesticPerCapita>455</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2050</Any>
+    <Codi>13</Codi>
+    <Nom>BARCELONÈS, EL</Nom>
+    <Poblacio>98754</Poblacio>
+    <DomesticXarxa>456</DomesticXarxa>
+    <ActivitatsEconomiques>654</ActivitatsEconomiques>
+    <Total>45667</Total>
+    <ConsumDomesticPerCapita>87,4</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2040</Any>
+    <Codi>30</Codi>
+    <Nom>RIBERA D'EBRE, LA</Nom>
+    <Poblacio>456</Poblacio>
+    <DomesticXarxa>456</DomesticXarxa>
+    <ActivitatsEconomiques>654</ActivitatsEconomiques>
+    <Total>45</Total>
+    <ConsumDomesticPerCapita>656</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2027</Any>
+    <Codi>30</Codi>
+    <Nom>RIBERA D'EBRE, LA</Nom>
+    <Poblacio>456</Poblacio>
+    <DomesticXarxa>654</DomesticXarxa>
+    <ActivitatsEconomiques>456</ActivitatsEconomiques>
+    <Total>456</Total>
+    <ConsumDomesticPerCapita>54,7</ConsumDomesticPerCapita>
+  </Comarca>
+  <Comarca>
+    <Any>2018</Any>
+    <Codi>25</Codi>
+    <Nom>PALLARS JUSSÀ, EL</Nom>
+    <Poblacio>78998</Poblacio>
+    <DomesticXarxa>7789</DomesticXarxa>
+    <ActivitatsEconomiques>987</ActivitatsEconomiques>
+    <Total>456</Total>
+    <ConsumDomesticPerCapita>56,67</ConsumDomesticPerCapita>
+  </Comarca>
 </Comarques>

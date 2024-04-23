@@ -1,5 +1,9 @@
 using System.Data;
 using System.Xml.Linq;
+using AC4_PersistenciaBBDD.DTOs;
+using AC4_PersistenciaBBDD.Persistence.Utils;
+using AC4_PersistenciaBBDD.Persistence.DAO;
+using AC4_PersistenciaBBDD.Persistence.Mapping;
 
 namespace AC4_PersistenciaBBDD
 {
@@ -16,7 +20,9 @@ namespace AC4_PersistenciaBBDD
 
         private List<int> Anys = new List<int>();
         private List<string> Comarques = new List<string>();
-        private List<Comarca> comarquescsv;
+        private List<ComarcaDTO> comarquescsv;
+
+        private IComarcaDAO comarcaDAO = new ComarcaDAO(NpgsqlUtils.OpenConnection());
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +32,7 @@ namespace AC4_PersistenciaBBDD
 
         private void CreateAndUpdateXML()
         {
-            List<Comarca> comarques = csvhandler.ReadAllCsv();
+            List<ComarcaDTO> comarques = csvhandler.ReadAllCsv();
             xmlhandler.ConvertToXml(comarques);
         }
 
@@ -52,8 +58,29 @@ namespace AC4_PersistenciaBBDD
             // Estiguin tots els arxius actualitzats/creats
             CreateAndUpdateXML();
 
-            // Llegir dades
-            comarquescsv = csvhandler.ReadAllCsv();
+            // Llegir dades desde la bbdd en cas de que no funcioni es llegiran las dades del csv   
+            try
+            {
+                comarquescsv = comarcaDAO.GetAllComarca().ToList();
+            }
+            catch (Exception ex)
+            {
+                comarquescsv = csvhandler.ReadAllCsv();
+            }
+
+            // Amb aquestas lineas de codi pujem a la base de dades les dades del csv en cas de que no hi hagin dades a la base de dades
+            /*foreach (var comarca in comarquescsv)
+            {
+                try
+                {
+                    comarcaDAO.AddComarca(comarca);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar la comarca", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }*/
 
             // Carregar dades
             MostraDadesEnElDataGridView();
@@ -93,7 +120,7 @@ namespace AC4_PersistenciaBBDD
             dgv_Comarcas.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
-        private List<Comarca> ObtindreDadesPaginades()
+        private List<ComarcaDTO> ObtindreDadesPaginades()
         {
             int indexInici = (paginaActual - 1) * tamañoPagina;
             int indexFinal = Math.Min(indexInici + tamañoPagina, comarquescsv.Count);
@@ -112,11 +139,11 @@ namespace AC4_PersistenciaBBDD
                 int poblacio = Convert.ToInt32(txtBoxPoblacio.Text);
                 double domesticXarxa = Convert.ToDouble(txtBoxDomesticXarxa.Text);
                 double activitatsEconomiques = Convert.ToDouble(txtBoxActEconomiques.Text);
-                double consumDomesticPerCapita = Convert.ToDouble(txtBoxConsumDomestic.Text);
+                double consumDomesticPerCapita = Convert.ToDouble(txtBoxConsumDomestic.Text.Replace('.',','));
                 double total = Convert.ToDouble(txtBoxTotal.Text);
 
-                List<Comarca> comarques = new List<Comarca> {
-                new Comarca
+                List<ComarcaDTO> comarques = new List<ComarcaDTO> {
+                new ComarcaDTO
                 {
                     Any = any,
                     CodiComarca = codiComarca,
@@ -127,6 +154,16 @@ namespace AC4_PersistenciaBBDD
                     ConsumDomesticPerCapita = consumDomesticPerCapita,
                     Total = total
                 }};
+                
+                try
+                {
+                    comarcaDAO.AddComarca(comarques[0]);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar la comarca", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 csvhandler.AppendCsv(comarques);
 
@@ -134,7 +171,14 @@ namespace AC4_PersistenciaBBDD
 
                 CreateAndUpdateXML();
 
-                comarquescsv = csvhandler.ReadAllCsv();
+                try
+                {
+                    comarquescsv = comarcaDAO.GetAllComarca().ToList();
+                }
+                catch (Exception ex)
+                {
+                    comarquescsv = csvhandler.ReadAllCsv();
+                }
 
                 MostraDadesEnElDataGridView();
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using CsvHelper.Configuration.Attributes;
 
-namespace AC4_PersistenciaBBDD
+namespace AC4_PersistenciaBBDD.DTOs
 {
-    public class Comarca
+    public class ComarcaDTO
     {
 
         [Index(0)]

@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+﻿using AC4_PersistenciaBBDD.DTOs;
 
 namespace AC4_PersistenciaBBDD
 {
@@ -367,7 +367,7 @@ namespace AC4_PersistenciaBBDD
             // 
             // comarcaBindingSource
             // 
-            comarcaBindingSource.DataSource = typeof(Comarca);
+            comarcaBindingSource.DataSource = typeof(ComarcaDTO);
             // 
             // AnyProvider
             // 

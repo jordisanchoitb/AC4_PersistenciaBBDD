@@ -1,4 +1,5 @@
-﻿using CsvHelper;
+﻿using AC4_PersistenciaBBDD.DTOs;
+using CsvHelper;
 using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,14 @@ namespace AC4_PersistenciaBBDD
             PATH = path;
         }
 
-        public List<Comarca> ReadAllCsv()
+        public List<ComarcaDTO> ReadAllCsv()
         {
             using var reader = new StreamReader(PATH);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            return csv.GetRecords<Comarca>().ToList();
+            return csv.GetRecords<ComarcaDTO>().ToList();
         }
 
-        public void AppendCsv(List<Comarca> comarques)
+        public void AppendCsv(List<ComarcaDTO> comarques)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
